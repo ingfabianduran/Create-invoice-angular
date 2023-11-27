@@ -19,7 +19,18 @@ export class InvoincePageMainComponent implements OnInit {
       dueDate: new FormControl(null, [Validators.required]),
       purchaseOrder: new FormControl(null, [Validators.required])
     }),
-    itemsInvoice: new FormArray([])
+    itemsInvoice: new FormArray([]),
+    formDetailsPayment: new FormGroup({
+      notes: new FormControl(null, []),
+      terms: new FormControl(null, []),
+      subtotal: new FormControl(null, []),
+      discount: new FormControl(null, [Validators.required]),
+      tax: new FormControl(null, []),
+      shipment: new FormControl(null, []),
+      total: new FormControl(null, []),
+      amountPaid: new FormControl(null, [Validators.required]),
+      balanceDue: new FormControl(null, [])
+    })
   });
 
   constructor() { }
@@ -31,10 +42,11 @@ export class InvoincePageMainComponent implements OnInit {
   /**
     * @author Fabian Duran
     * @createdate 2023-11-25
-    * Metodo que retorna el form group del form invoice.
+    * Metodo que retorna los form group del formulario invoice.
+    * @param nameForm Nombre del form group
     * @returns form header 
   */
-  getFormHeader(): FormGroup {
-    return this.formInvoice.get('formHeader') as FormGroup;
+  getFormGroupByFormInvoice(nameForm: string): FormGroup {
+    return this.formInvoice.get(nameForm) as FormGroup;
   }
 }

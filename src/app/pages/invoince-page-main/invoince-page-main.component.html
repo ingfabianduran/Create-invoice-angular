@@ -1,4 +1,5 @@
 <section>
-  <app-header-invoince [formInvoiceHeader]="getFormHeader()"></app-header-invoince>
+  <app-header-invoince [formInvoiceHeader]="getFormGroupByFormInvoice('formHeader')"></app-header-invoince>
   <app-articles-invoince [formInvoice]="formInvoice"></app-articles-invoince>
+  <app-totals-invoince [formDetailsPayment]="getFormGroupByFormInvoice('formDetailsPayment')"></app-totals-invoince>
 </section>
