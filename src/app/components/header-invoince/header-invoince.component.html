@@ -1,5 +1,5 @@
 <div class="container p-4 m-4 border rounded rounded-3" style="background-color: white;">
-  <form [formGroup]="formInvoice">
+  <form [formGroup]="formInvoiceHeader">
     <div class="row d-flex justify-content-between align-items-end">
       <div class="col-md-5 d-flex flex-column">
         <div class="d-flex justify-content-center align-items-center border rounded"
@@ -9,11 +9,17 @@
         <mat-form-field class="pt-2 w-75" appearance="fill">
           <mat-label>¿Who is this invoice from? (required)</mat-label>
           <input matInput formControlName="nameInvoiceFrom">
+          <mat-error *ngIf="formInvoiceHeader.get('nameInvoiceFrom')?.errors">
+            <span *ngIf="formInvoiceHeader.get('nameInvoiceFrom')?.errors?.['required']">El campo es requerido</span>
+          </mat-error>
         </mat-form-field>
         <div class="row">
           <mat-form-field class="col-md-6" appearance="fill">
             <mat-label>¿Who is this invoice to? (required)</mat-label>
             <input matInput formControlName="billTo">
+            <mat-error *ngIf="formInvoiceHeader.get('billTo')?.errors">
+              <span *ngIf="formInvoiceHeader.get('billTo')?.errors?.['required']">El campo es requerido</span>
+            </mat-error>
           </mat-form-field>
           <mat-form-field class="col-md-6" appearance="fill">
             <mat-label>Enviar a (opcional)</mat-label>
@@ -29,6 +35,9 @@
               <mat-label>Número de factura</mat-label>
               <input matInput formControlName="invoiceNumber">
               <span matPrefix>#&nbsp;</span>
+              <mat-error *ngIf="formInvoiceHeader.get('invoiceNumber')?.errors">
+                <span *ngIf="formInvoiceHeader.get('invoiceNumber')?.errors?.['required']">El campo es requerido</span>
+              </mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -39,22 +48,34 @@
               <input matInput [matDatepicker]="date" formControlName="date">
               <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
               <mat-datepicker #date></mat-datepicker>
+              <mat-error *ngIf="formInvoiceHeader.get('date')?.errors">
+                <span *ngIf="formInvoiceHeader.get('date')?.errors?.['required']">El campo es requerido</span>
+              </mat-error>
             </mat-form-field>
             <mat-form-field class="col-md-6" appearance="fill">
               <mat-label>Fecha de vencimiento</mat-label>
               <input matInput [matDatepicker]="dueDate" formControlName="dueDate">
               <mat-datepicker-toggle matSuffix [for]="dueDate"></mat-datepicker-toggle>
               <mat-datepicker #dueDate></mat-datepicker>
+              <mat-error *ngIf="formInvoiceHeader.get('dueDate')?.errors">
+                <span *ngIf="formInvoiceHeader.get('dueDate')?.errors?.['required']">El campo es requerido</span>
+              </mat-error>
             </mat-form-field>
           </div>
           <div class="row">
             <mat-form-field class="col-md-6" appearance="fill">
               <mat-label>Condiciones de pago</mat-label>
               <input matInput formControlName="conditionsPayment">
+              <mat-error *ngIf="formInvoiceHeader.get('conditionsPayment')?.errors">
+                <span *ngIf="formInvoiceHeader.get('conditionsPayment')?.errors?.['required']">El campo es requerido</span>
+              </mat-error>
             </mat-form-field>
             <mat-form-field class="col-md-6" appearance="fill">
               <mat-label>Orden de compra</mat-label>
               <input matInput formControlName="purchaseOrder">
+              <mat-error *ngIf="formInvoiceHeader.get('purchaseOrder')?.errors">
+                <span *ngIf="formInvoiceHeader.get('purchaseOrder')?.errors?.['required']">El campo es requerido</span>
+              </mat-error>
             </mat-form-field>
           </div>
         </div>

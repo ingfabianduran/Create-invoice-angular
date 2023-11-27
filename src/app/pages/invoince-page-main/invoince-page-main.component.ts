@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-invoince-page-main',
@@ -18,7 +18,8 @@ export class InvoincePageMainComponent implements OnInit {
       sendTo: new FormControl(null, []),
       dueDate: new FormControl(null, [Validators.required]),
       purchaseOrder: new FormControl(null, [Validators.required])
-    })
+    }),
+    itemsInvoice: new FormArray([])
   });
 
   constructor() { }

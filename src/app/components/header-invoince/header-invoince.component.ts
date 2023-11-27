@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./header-invoince.component.css']
 })
 export class HeaderInvoinceComponent implements OnInit {
-  @Input() formInvoice!: FormGroup;
+  @Input() formInvoiceHeader!: FormGroup;
 
   constructor() { }
 
