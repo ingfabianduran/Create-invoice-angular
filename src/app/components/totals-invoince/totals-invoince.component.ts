@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-totals-invoince',
@@ -12,6 +12,11 @@ export class TotalsInvoinceComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  
+    
+  }
+
+  showOrHideFieldTaxOrShipping(state: boolean, name: string): void {
+    if (state) this.formDetailsPayment.addControl(name, new FormControl('', [Validators.required]));
+    else this.formDetailsPayment.removeControl(name);
   }
 }

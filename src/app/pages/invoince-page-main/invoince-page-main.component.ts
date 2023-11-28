@@ -26,8 +26,6 @@ export class InvoincePageMainComponent implements OnInit {
       terms: new FormControl(null, []),
       subtotal: new FormControl(null, []),
       discount: new FormControl(null, [Validators.required]),
-      tax: new FormControl(null, []),
-      shipment: new FormControl(null, []),
       total: new FormControl(null, []),
       amountPaid: new FormControl(null, [Validators.required]),
       balanceDue: new FormControl(null, [])
@@ -40,7 +38,7 @@ export class InvoincePageMainComponent implements OnInit {
     this.ngxSpinnerService.show();
     setTimeout(() => {
       this.ngxSpinnerService.hide();
-    }, 5000);
+    }, 2000);
   }
 
   /**

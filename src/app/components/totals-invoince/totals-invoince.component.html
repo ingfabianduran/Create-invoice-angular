@@ -1,0 +1,55 @@
+<div class="container p-4 m-4 border rounded rounded-3" style="background-color: white;">
+  <form [formGroup]="formDetailsPayment">
+    <div class="row d-flex justify-content-between align-items-center">
+      <div class="col-md-5 d-flex flex-column">
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Notas</mat-label>
+          <textarea matInput formControlName="notes"
+            placeholder="Notes - any relevant information not alredy covered"></textarea>
+        </mat-form-field>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Terminos</mat-label>
+          <textarea matInput formControlName="terms"
+            placeholder="Terms and conditions - late fees, payment methods, delivery schedule"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4 d-flex flex-column">
+        <div class="row">
+          <mat-form-field class="col-md-6" appearance="fill">
+            <mat-label>Subtotal</mat-label>
+            <input readonly matInput formControlName="subtotal">
+            <span matPrefix>$&nbsp;</span>
+          </mat-form-field>
+          <mat-form-field class="col-md-6" appearance="fill">
+            <mat-label>Descuento</mat-label>
+            <input readonly matInput formControlName="discount">
+            <span matPrefix>$&nbsp;</span>
+          </mat-form-field>
+        </div>
+        <div *ngIf="!formDetailsPayment.get('tax') && !formDetailsPayment.get('shipment')" class="d-flex justify-content-end pb-3">
+          <button *ngIf="!formDetailsPayment.get('tax')" class="mx-1" mat-raised-button color="accent"
+            (click)="showOrHideFieldTaxOrShipping(true, 'tax')">Tax</button>
+          <button *ngIf="!formDetailsPayment.get('shipment')" class="mx-1" mat-raised-button color="accent"
+            (click)="showOrHideFieldTaxOrShipping(true, 'shipment')">Shipping</button>
+        </div>
+        <div class="row">
+          <mat-form-field class="col-md-6" appearance="fill">
+            <mat-label>Total</mat-label>
+            <input readonly matInput formControlName="total">
+            <span matPrefix>$&nbsp;</span>
+          </mat-form-field>
+          <mat-form-field class="col-md-6" appearance="fill">
+            <mat-label>Cantidad pagada</mat-label>
+            <input readonly matInput formControlName="amountPaid">
+            <span matPrefix>$&nbsp;</span>
+          </mat-form-field>
+          <mat-form-field class="col-md-12" appearance="fill">
+            <mat-label>Saldo adeudado</mat-label>
+            <input readonly matInput formControlName="balanceDue">
+            <span matPrefix>$&nbsp;</span>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
