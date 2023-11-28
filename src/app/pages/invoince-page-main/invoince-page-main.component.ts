@@ -25,7 +25,7 @@ export class InvoincePageMainComponent implements OnInit {
       notes: new FormControl(null, []),
       terms: new FormControl(null, []),
       subtotal: new FormControl(null, []),
-      discount: new FormControl(null, [Validators.required]),
+      discount: new FormControl(null, []),
       total: new FormControl(null, []),
       amountPaid: new FormControl(null, [Validators.required]),
       balanceDue: new FormControl(null, [])

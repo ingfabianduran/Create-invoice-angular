@@ -1,4 +1,4 @@
-<div class="container p-4 m-4 border rounded rounded-3" style="background-color: white;">
+<section class="p-4 m-4 border rounded rounded-3" style="background-color: white;">
   <div [formGroup]="formInvoice">
     <div formArrayName="itemsInvoice">
       <div class="row" *ngFor="let item of itemsInvoice.controls; let i = index" [formGroupName]="i">
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
           <button (click)="addItemInvoice()" class="w-100" mat-raised-button color="accent">
             Agregar item
           </button>
@@ -49,4 +49,4 @@
       </div>
     </div>
   </div>
-</div>
+</section>
