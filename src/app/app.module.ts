@@ -9,6 +9,7 @@ import { ArticlesInvoinceComponent } from './components/articles-invoince/articl
 import { TotalsInvoinceComponent } from './components/totals-invoince/totals-invoince.component';
 import { InvoincePageMainComponent } from './pages/invoince-page-main/invoince-page-main.component';
 import { MaterialModule } from './modules/material/material.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MaterialModule } from './modules/material/material.module';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    NgxSpinnerModule.forRoot({ type: 'timer' })
   ],
   providers: [],
   bootstrap: [AppComponent]

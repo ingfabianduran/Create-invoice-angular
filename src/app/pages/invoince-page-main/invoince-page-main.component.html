@@ -1,5 +1,9 @@
-<section>
+<section #customLoadingTemplate>
   <app-header-invoince [formInvoiceHeader]="getFormGroupByFormInvoice('formHeader')"></app-header-invoince>
   <app-articles-invoince [formInvoice]="formInvoice"></app-articles-invoince>
   <app-totals-invoince [formDetailsPayment]="getFormGroupByFormInvoice('formDetailsPayment')"></app-totals-invoince>
+  <ngx-spinner 
+    bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" [fullScreen]="true">
+    <p style="color: white">Cargando...</p>
+  </ngx-spinner>
 </section>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-invoince-page-main',
@@ -33,10 +34,13 @@ export class InvoincePageMainComponent implements OnInit {
     })
   });
 
-  constructor() { }
+  constructor(private ngxSpinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
-
+    this.ngxSpinnerService.show();
+    setTimeout(() => {
+      this.ngxSpinnerService.hide();
+    }, 5000);
   }
 
   /**
