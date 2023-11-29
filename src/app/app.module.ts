@@ -10,6 +10,7 @@ import { TotalsInvoinceComponent } from './components/totals-invoince/totals-inv
 import { InvoincePageMainComponent } from './pages/invoince-page-main/invoince-page-main.component';
 import { MaterialModule } from './modules/material/material.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { InvoicesPageMainComponent } from './pages/invoices-page-main/invoices-page-main.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     HeaderInvoinceComponent,
     ArticlesInvoinceComponent,
     TotalsInvoinceComponent,
-    InvoincePageMainComponent
+    InvoincePageMainComponent,
+    InvoicesPageMainComponent
   ],
   imports: [
     BrowserModule,
