@@ -23,11 +23,11 @@ export class InvoincePageMainComponent implements OnInit {
     formDetailsPayment: new FormGroup({
       notes: new FormControl(null, []),
       terms: new FormControl(null, []),
-      subtotal: new FormControl(null, []),
+      subtotal: new FormControl({ value: '', disabled: true }, []),
       discount: new FormControl(null, []),
-      total: new FormControl(null, []),
+      total: new FormControl({ value: '', disabled: true }, []),
       amountPaid: new FormControl(null, [Validators.required]),
-      balanceDue: new FormControl(null, [])
+      balanceDue: new FormControl({ value: '', disabled: true }, [])
     })
   });
 

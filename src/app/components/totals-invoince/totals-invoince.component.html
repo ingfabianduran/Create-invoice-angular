@@ -18,13 +18,13 @@
         <div class="row">
           <mat-form-field class="col-md-6" appearance="fill">
             <mat-label>Subtotal</mat-label>
-            <input readonly matInput formControlName="subtotal">
+            <input matInput formControlName="subtotal">
             <span matPrefix>$&nbsp;</span>
           </mat-form-field>
           <mat-form-field class="col-md-6" appearance="fill">
             <mat-label>Descuento</mat-label>
-            <input readonly matInput formControlName="discount">
-            <span matPrefix>$&nbsp;</span>
+            <input type="number" matInput formControlName="discount">
+            <span matPrefix>%&nbsp;</span>
           </mat-form-field>
         </div>
         <div *ngIf="formDetailsPayment.get('tax') || formDetailsPayment.get('shipment')" [@fadeInOnEnter]
@@ -59,7 +59,7 @@
         <div class="row">
           <mat-form-field class="col-md-6" appearance="fill">
             <mat-label>Total</mat-label>
-            <input readonly matInput formControlName="total">
+            <input matInput formControlName="total">
             <span matPrefix>$&nbsp;</span>
           </mat-form-field>
           <mat-form-field class="col-md-6" appearance="fill">
@@ -72,7 +72,7 @@
           </mat-form-field>
           <mat-form-field class="col-md-12" appearance="fill">
             <mat-label>Saldo adeudado</mat-label>
-            <input readonly matInput formControlName="balanceDue">
+            <input matInput formControlName="balanceDue">
             <span matPrefix>$&nbsp;</span>
           </mat-form-field>
         </div>

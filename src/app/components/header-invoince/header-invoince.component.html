@@ -2,10 +2,17 @@
   <form [formGroup]="formInvoiceHeader">
     <div class="row d-flex justify-content-between align-items-end">
       <div class="col-md-5 d-flex flex-column">
-        <div class="d-flex justify-content-center align-items-center border rounded"
+        <div *ngIf="!imageLogo; else imageUpload" (click)="onClickToUploadFile()"
+          class="d-flex justify-content-center align-items-center border rounded"
           style="width: 200px; height: 150px; cursor: pointer; background-color: #eeeeee;">
           <span style="font-weight: 600; font-size: 16px; color: #9e9e9e;">Add your Logo</span>
         </div>
+        <ng-template #imageUpload>
+          <div (click)="onClickToUploadFile()" class="d-flex flex-column justify-content-center align-items-center"
+            style="width: 200px; height: 200px; cursor: pointer;">
+            <img width="200" height="150" [src]="imageLogo" alt="Logo precargado">
+          </div>
+        </ng-template>
         <mat-form-field class="pt-2 w-75" appearance="fill">
           <mat-label>¿Who is this invoice from? (required)</mat-label>
           <input matInput formControlName="nameInvoiceFrom">
@@ -33,7 +40,7 @@
           <div class="d-flex justify-content-end">
             <mat-form-field class="w-75 " appearance="fill">
               <mat-label>Número de factura</mat-label>
-              <input matInput formControlName="invoiceNumber">
+              <input type="number" matInput formControlName="invoiceNumber">
               <span matPrefix>#&nbsp;</span>
               <mat-error *ngIf="formInvoiceHeader.get('invoiceNumber')?.errors">
                 <span *ngIf="formInvoiceHeader.get('invoiceNumber')?.errors?.['required']">El campo es requerido</span>
@@ -67,7 +74,8 @@
               <mat-label>Condiciones de pago</mat-label>
               <input matInput formControlName="conditionsPayment">
               <mat-error *ngIf="formInvoiceHeader.get('conditionsPayment')?.errors">
-                <span *ngIf="formInvoiceHeader.get('conditionsPayment')?.errors?.['required']">El campo es requerido</span>
+                <span *ngIf="formInvoiceHeader.get('conditionsPayment')?.errors?.['required']">El campo es
+                  requerido</span>
               </mat-error>
             </mat-form-field>
             <mat-form-field class="col-md-6" appearance="fill">
@@ -77,6 +85,8 @@
                 <span *ngIf="formInvoiceHeader.get('purchaseOrder')?.errors?.['required']">El campo es requerido</span>
               </mat-error>
             </mat-form-field>
+            <input type="file" #inputFileImage accept="image/*" style="display: none;"
+              (change)="onChangeUploadFile($event)">
           </div>
         </div>
       </div>

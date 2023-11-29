@@ -18,7 +18,9 @@ export class LoaderInterceptor implements HttpInterceptor {
     
     return next.handle(request).pipe(
       finalize(() => {
-        this.ngxSpinnerService.hide();
+        setTimeout(() => {
+          this.ngxSpinnerService.hide();
+        }, 1000);
       })
     );
   }

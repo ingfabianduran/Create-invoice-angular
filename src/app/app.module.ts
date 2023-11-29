@@ -13,6 +13,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { InvoicesPageMainComponent } from './pages/invoices-page-main/invoices-page-main.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
+import { ToastrModule } from 'ngx-toastr';
+import { AlertInterceptor } from './interceptors/alert.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,12 +33,18 @@ import { LoaderInterceptor } from './interceptors/loader.interceptor';
     ReactiveFormsModule,
     MaterialModule,
     NgxSpinnerModule.forRoot({ type: 'timer' }),
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AlertInterceptor,
       multi: true
     }
   ],

@@ -27,21 +27,15 @@
         <div class="col-md-2">
           <mat-form-field class="w-100" appearance="fill">
             <mat-label>Costo</mat-label>
-            <input readonly matInput formControlName="price">
+            <input matInput formControlName="price">
             <span matPrefix>$&nbsp;</span>
-            <mat-error *ngIf="itemsInvoice.controls[i].get('price')?.errors">
-              <span *ngIf="itemsInvoice.controls[i].get('price')?.errors?.['required']">El campo es requerido</span>
-            </mat-error>
           </mat-form-field>
         </div>
-        <div [ngClass]="{'col-md-4': i === 0, 'col-md-3': i > 0}">
+        <div class="col-md-3">
           <mat-form-field class="w-100" appearance="fill">
             <mat-label>Total</mat-label>
-            <input readonly matInput formControlName="total">
+            <input matInput formControlName="total">
             <span matPrefix>$&nbsp;</span>
-            <mat-error *ngIf="itemsInvoice.controls[i].get('total')?.errors">
-              <span *ngIf="itemsInvoice.controls[i].get('total')?.errors?.['required']">El campo es requerido</span>
-            </mat-error>
           </mat-form-field>
         </div>
         <div *ngIf="i > 0" class="col-md-1 text-center">

@@ -42,8 +42,8 @@ export class ArticlesInvoinceComponent implements OnInit {
     const item = new FormGroup({
       product: new FormControl('', [Validators.required]),
       quantity: new FormControl('', [Validators.required, Validators.min(1)]),
-      price: new FormControl('', [Validators.required]),
-      total: new FormControl('', [Validators.required])
+      price: new FormControl({ value: '', disabled: true }, []),
+      total: new FormControl({ value: '', disabled: true }, [])
     });
     this.itemsInvoice.push(item);
   }
