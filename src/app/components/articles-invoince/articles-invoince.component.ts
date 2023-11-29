@@ -1,10 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
+import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-articles-invoince',
   templateUrl: './articles-invoince.component.html',
-  styleUrls: ['./articles-invoince.component.css']
+  styleUrls: ['./articles-invoince.component.css'],
+  animations: [
+    fadeInOnEnterAnimation(),
+    fadeOutOnLeaveAnimation()
+  ]
 })
 export class ArticlesInvoinceComponent implements OnInit {
   @Input() formInvoice!: FormGroup;

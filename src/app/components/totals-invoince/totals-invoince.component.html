@@ -4,13 +4,14 @@
       <div class="col-md-6 d-flex flex-column">
         <mat-form-field class="w-100" appearance="fill">
           <mat-label>Notas</mat-label>
-          <textarea matInput formControlName="notes"
-            placeholder="Notes - any relevant information not alredy covered" style="resize: none;"></textarea>
+          <textarea matInput formControlName="notes" placeholder="Notes - any relevant information not alredy covered"
+            style="resize: none;"></textarea>
         </mat-form-field>
         <mat-form-field class="w-100" appearance="fill">
           <mat-label>Terminos</mat-label>
           <textarea matInput formControlName="terms"
-            placeholder="Terms and conditions - late fees, payment methods, delivery schedule" style="resize: none;"></textarea>
+            placeholder="Terms and conditions - late fees, payment methods, delivery schedule"
+            style="resize: none;"></textarea>
         </mat-form-field>
       </div>
       <div class="col-md-6 d-flex flex-column">
@@ -26,9 +27,10 @@
             <span matPrefix>$&nbsp;</span>
           </mat-form-field>
         </div>
-        <div *ngIf="formDetailsPayment.get('tax') || formDetailsPayment.get('shipment')"
-          class="row d-flex justify-content-end">
-          <mat-form-field *ngIf="formDetailsPayment.get('tax')" class="col-md-6" appearance="fill">
+        <div *ngIf="formDetailsPayment.get('tax') || formDetailsPayment.get('shipment')" [@fadeInOnEnter]
+          [@fadeOutOnLeave] class="row d-flex justify-content-end">
+          <mat-form-field *ngIf="formDetailsPayment.get('tax')" [@fadeInOnEnter] [@fadeOutOnLeave] class="col-md-6"
+            appearance="fill">
             <mat-label>Impuesto</mat-label>
             <input matInput formControlName="tax">
             <span matPrefix>%&nbsp;</span>
@@ -36,7 +38,8 @@
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
-          <mat-form-field *ngIf="formDetailsPayment.get('shipment')" class="col-md-6" appearance="fill">
+          <mat-form-field *ngIf="formDetailsPayment.get('shipment')" [@fadeInOnEnter] [@fadeOutOnLeave] class="col-md-6"
+            appearance="fill">
             <mat-label>Envio</mat-label>
             <input matInput formControlName="shipment">
             <span matPrefix>$&nbsp;</span>
@@ -45,11 +48,12 @@
             </button>
           </mat-form-field>
         </div>
-        <div *ngIf="!formDetailsPayment.get('tax') || !formDetailsPayment.get('shipment')"
-          class="d-flex justify-content-end pb-3">
-          <button *ngIf="!formDetailsPayment.get('tax')" class="mx-1" mat-raised-button color="accent"
-            (click)="showOrHideFieldTaxOrShipping(true, 'tax')">Tax</button>
-          <button *ngIf="!formDetailsPayment.get('shipment')" class="mx-1" mat-raised-button color="accent"
+        <div *ngIf="!formDetailsPayment.get('tax') || !formDetailsPayment.get('shipment')" [@fadeInOnEnter]
+          [@fadeOutOnLeave] class="d-flex justify-content-end pb-3">
+          <button type="button" *ngIf="!formDetailsPayment.get('tax')" [@fadeInOnEnter] [@fadeOutOnLeave] class="mx-1"
+            mat-raised-button color="accent" (click)="showOrHideFieldTaxOrShipping(true, 'tax')">Tax</button>
+          <button type="button" *ngIf="!formDetailsPayment.get('shipment')" [@fadeInOnEnter] [@fadeOutOnLeave]
+            class="mx-1" mat-raised-button color="accent"
             (click)="showOrHideFieldTaxOrShipping(true, 'shipment')">Shipping</button>
         </div>
         <div class="row">
@@ -73,9 +77,12 @@
           </mat-form-field>
         </div>
         <div class="row d-flex justify-content-end">
-          <div class="col-md-4"><button type="button" class="w-100 my-1" mat-raised-button color="accent">VER FACTURAS</button></div>
-          <div class="col-md-3"><button type="button" class="w-100 my-1" mat-raised-button color="secondary">CANCELAR</button></div>
-          <div class="col-md-3"><button type="button" class="w-100 my-1" mat-raised-button color="primary">GUARDAR</button></div>
+          <div class="col-md-4"><button type="button" class="w-100 my-1" mat-raised-button color="accent">VER
+              FACTURAS</button></div>
+          <div class="col-md-3"><button type="button" class="w-100 my-1" mat-raised-button
+              color="secondary">CANCELAR</button></div>
+          <div class="col-md-3"><button type="button" class="w-100 my-1" mat-raised-button
+              color="primary">GUARDAR</button></div>
         </div>
       </div>
     </div>
