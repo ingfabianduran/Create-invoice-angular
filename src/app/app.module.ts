@@ -11,6 +11,8 @@ import { InvoincePageMainComponent } from './pages/invoince-page-main/invoince-p
 import { MaterialModule } from './modules/material/material.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { InvoicesPageMainComponent } from './pages/invoices-page-main/invoices-page-main.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,16 @@ import { InvoicesPageMainComponent } from './pages/invoices-page-main/invoices-p
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    NgxSpinnerModule.forRoot({ type: 'timer' })
+    NgxSpinnerModule.forRoot({ type: 'timer' }),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

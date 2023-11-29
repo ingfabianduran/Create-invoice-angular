@@ -1,12 +1,13 @@
 <section class="p-4 m-4 border rounded rounded-3" style="background-color: white;">
   <div [formGroup]="formInvoice">
     <div formArrayName="itemsInvoice">
-      <div class="row" *ngFor="let item of itemsInvoice.controls; let i = index" [formGroupName]="i" [@fadeInOnEnter] [@fadeOutOnLeave]>
+      <div class="row" *ngFor="let item of itemsInvoice.controls; let i = index" [formGroupName]="i" [@fadeInOnEnter]
+        [@fadeOutOnLeave]>
         <div class="col-md-4">
           <mat-form-field class="w-100" appearance="fill">
             <mat-label>Productos</mat-label>
-            <mat-select formControlName="product">
-              <mat-option value="Producto 1">Producto 1</mat-option>
+            <mat-select formControlName="product" (selectionChange)="onSelectProduct($event, i)">
+              <mat-option *ngFor="let item of products" [value]="item.id">{{ item.title }}</mat-option>
             </mat-select>
             <mat-error *ngIf="itemsInvoice.controls[i].get('product')?.errors">
               <span *ngIf="itemsInvoice.controls[i].get('product')?.errors?.['required']">El campo es requerido</span>
@@ -16,9 +17,10 @@
         <div class="col-md-2">
           <mat-form-field class="w-100" appearance="fill">
             <mat-label>Cantidad</mat-label>
-            <input matInput formControlName="quantity">
+            <input type="number" matInput formControlName="quantity" (change)="onChangeQuantity($event, i)">
             <mat-error *ngIf="itemsInvoice.controls[i].get('quantity')?.errors">
               <span *ngIf="itemsInvoice.controls[i].get('quantity')?.errors?.['required']">El campo es requerido</span>
+              <span *ngIf="itemsInvoice.controls[i].get('quantity')?.errors?.['min']">Valor minimo permitido es 1</span>
             </mat-error>
           </mat-form-field>
         </div>
@@ -26,12 +28,20 @@
           <mat-form-field class="w-100" appearance="fill">
             <mat-label>Costo</mat-label>
             <input readonly matInput formControlName="price">
+            <span matPrefix>$&nbsp;</span>
+            <mat-error *ngIf="itemsInvoice.controls[i].get('price')?.errors">
+              <span *ngIf="itemsInvoice.controls[i].get('price')?.errors?.['required']">El campo es requerido</span>
+            </mat-error>
           </mat-form-field>
         </div>
         <div [ngClass]="{'col-md-4': i === 0, 'col-md-3': i > 0}">
           <mat-form-field class="w-100" appearance="fill">
             <mat-label>Total</mat-label>
             <input readonly matInput formControlName="total">
+            <span matPrefix>$&nbsp;</span>
+            <mat-error *ngIf="itemsInvoice.controls[i].get('total')?.errors">
+              <span *ngIf="itemsInvoice.controls[i].get('total')?.errors?.['required']">El campo es requerido</span>
+            </mat-error>
           </mat-form-field>
         </div>
         <div *ngIf="i > 0" class="col-md-1 text-center">
