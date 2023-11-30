@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
+import { MatDialog } from '@angular/material/dialog';
+import { InvoicesPageMainComponent } from '../../pages/invoices-page-main/invoices-page-main.component';
 
 @Component({
   selector: 'app-totals-invoince',
@@ -14,7 +16,7 @@ import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animati
 export class TotalsInvoinceComponent implements OnInit {
   @Input() formDetailsPayment!: FormGroup;
 
-  constructor() { }
+  constructor(private matDialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -83,5 +85,15 @@ export class TotalsInvoinceComponent implements OnInit {
     const total = Number(this.formDetailsPayment.get('total')?.value);
     const newTotal = $event ? (total + ((tax * total) / 100)).toFixed(2) : (total - ((tax * total) / 100)).toFixed(2);
     this.formDetailsPayment.get('total')?.setValue(newTotal);
+  }
+  /**
+    * @author Fabian Duran
+    * @createdate 2023-11-30
+    * Metodo que abre la modal para vizualizar las facturas registradas.
+  */
+  onClickViewInvoices(): void {
+    this.matDialog.open(InvoicesPageMainComponent, {
+      width: '70%'
+    });
   }
 }

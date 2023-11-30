@@ -61,7 +61,7 @@
             </mat-form-field>
             <mat-form-field class="col-md-6" appearance="fill">
               <mat-label>Fecha de vencimiento</mat-label>
-              <input matInput [matDatepicker]="dueDate" formControlName="dueDate">
+              <input matInput [matDatepicker]="dueDate" formControlName="dueDate" [min]="formInvoiceHeader.get('date')?.value">
               <mat-datepicker-toggle matSuffix [for]="dueDate"></mat-datepicker-toggle>
               <mat-datepicker #dueDate></mat-datepicker>
               <mat-error *ngIf="formInvoiceHeader.get('dueDate')?.errors">
