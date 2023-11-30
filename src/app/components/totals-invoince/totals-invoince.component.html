@@ -23,8 +23,11 @@
           </mat-form-field>
           <mat-form-field class="col-md-6" appearance="fill">
             <mat-label>Descuento</mat-label>
-            <input type="number" matInput formControlName="discount">
+            <input type="number" matInput formControlName="discount" (change)="calculateTotalWithDiscount($event)">
             <span matPrefix>%&nbsp;</span>
+            <mat-error *ngIf="formDetailsPayment.get('discount')?.errors">
+              <span *ngIf="formDetailsPayment.get('discount')?.errors?.['min']">Solo valores positivos</span>
+            </mat-error>
           </mat-form-field>
         </div>
         <div *ngIf="formDetailsPayment.get('tax') || formDetailsPayment.get('shipment')" [@fadeInOnEnter]
@@ -32,20 +35,28 @@
           <mat-form-field *ngIf="formDetailsPayment.get('tax')" [@fadeInOnEnter] [@fadeOutOnLeave] class="col-md-6"
             appearance="fill">
             <mat-label>Impuesto</mat-label>
-            <input matInput formControlName="tax">
+            <input type="number" matInput formControlName="tax" (change)="calculateTotalWithTax($event)">
             <span matPrefix>%&nbsp;</span>
             <button type="button" (click)="showOrHideFieldTaxOrShipping(false, 'tax')" mat-icon-button matSuffix>
               <mat-icon>close</mat-icon>
             </button>
+            <mat-error *ngIf="formDetailsPayment.get('tax')?.errors">
+              <span *ngIf="formDetailsPayment.get('tax')?.errors?.['required']">El campo es requerido</span>
+              <span *ngIf="formDetailsPayment.get('tax')?.errors?.['min']">Valor minimo permitido es 1</span>
+            </mat-error>
           </mat-form-field>
           <mat-form-field *ngIf="formDetailsPayment.get('shipment')" [@fadeInOnEnter] [@fadeOutOnLeave] class="col-md-6"
             appearance="fill">
             <mat-label>Envio</mat-label>
-            <input matInput formControlName="shipment">
+            <input type="number" matInput formControlName="shipment" (change)="calculateTotalWithShipment($event)">
             <span matPrefix>$&nbsp;</span>
             <button type="button" (click)="showOrHideFieldTaxOrShipping(false, 'shipment')" mat-icon-button matSuffix>
               <mat-icon>close</mat-icon>
             </button>
+            <mat-error *ngIf="formDetailsPayment.get('shipment')?.errors">
+              <span *ngIf="formDetailsPayment.get('shipment')?.errors?.['required']">El campo es requerido</span>
+              <span *ngIf="formDetailsPayment.get('shipment')?.errors?.['min']">Valor minimo permitido es 1</span>
+            </mat-error>
           </mat-form-field>
         </div>
         <div *ngIf="!formDetailsPayment.get('tax') || !formDetailsPayment.get('shipment')" [@fadeInOnEnter]
@@ -64,7 +75,7 @@
           </mat-form-field>
           <mat-form-field class="col-md-6" appearance="fill">
             <mat-label>Cantidad pagada</mat-label>
-            <input matInput formControlName="amountPaid">
+            <input matInput formControlName="amountPaid" (change)="calculateBalanceDue($event)">
             <span matPrefix>$&nbsp;</span>
             <mat-error *ngIf="formDetailsPayment.get('amountPaid')?.errors">
               <span *ngIf="formDetailsPayment.get('amountPaid')?.errors?.['required']">El campo es requerido</span>

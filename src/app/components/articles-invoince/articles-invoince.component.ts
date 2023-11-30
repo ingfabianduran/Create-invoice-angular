@@ -41,7 +41,7 @@ export class ArticlesInvoinceComponent implements OnInit {
   addItemInvoice(): void {
     const item = new FormGroup({
       product: new FormControl('', [Validators.required]),
-      quantity: new FormControl('', [Validators.required, Validators.min(1)]),
+      quantity: new FormControl(1, [Validators.required, Validators.min(1)]),
       price: new FormControl({ value: '', disabled: true }, []),
       total: new FormControl({ value: '', disabled: true }, [])
     });
@@ -75,9 +75,8 @@ export class ArticlesInvoinceComponent implements OnInit {
   onSelectProduct($event: MatSelectChange, index: number): void {
     this.productService.getProductById($event.value).subscribe((res: Product) => {
       this.itemsInvoice.at(index).get('price')?.setValue(res.price);
-      this.itemsInvoice.at(index).get('quantity')?.setValue('');
-      this.itemsInvoice.at(index).get('total')?.setValue('');
-      this.itemsInvoice.at(index).markAllAsTouched();
+      this.onChangeQuantity(null, index);
+      this.calculateSubtotalByProducts();
     });
   }
   /**
@@ -87,9 +86,21 @@ export class ArticlesInvoinceComponent implements OnInit {
     * @param $event Evento emitido por el input
     * @param index Indice del campo seleccionado
   */
-  onChangeQuantity($event: Event, index: number): void {
-    const quantity: number = Number(($event.target as HTMLInputElement).value);
-    const cost: number = Number(this.itemsInvoice.at(index).get('price')?.value);
+  onChangeQuantity($event: Event | null, index: number): void {
+    const quantity = $event ? Number(($event?.target as HTMLInputElement).value) : Number(this.itemsInvoice.at(index).get('quantity')?.value);
+    const cost = Number(this.itemsInvoice.at(index).get('price')?.value);
     this.itemsInvoice.at(index).get('total')?.setValue(cost * quantity);
+    this.calculateSubtotalByProducts();
+  }
+  /**
+    * @author Fabian Duran
+    * @createdate 2023-11-30
+    * Metodo que calcula el subtotal a traves del listado de productos.  
+  */
+  calculateSubtotalByProducts(): void {
+    const products = this.itemsInvoice.getRawValue();
+    const suma = products.reduce((previousValue, currentValue) => previousValue + currentValue.total, 0);
+    this.formInvoice.get('formDetailsPayment')?.get('subtotal')?.setValue(suma);
+    this.formInvoice.get('formDetailsPayment')?.get('total')?.setValue(suma);
   }
 }
