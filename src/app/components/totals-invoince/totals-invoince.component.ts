@@ -93,7 +93,8 @@ export class TotalsInvoinceComponent implements OnInit {
   */
   onClickViewInvoices(): void {
     this.matDialog.open(InvoicesPageMainComponent, {
-      width: '70%'
+      width: '70%',
+      autoFocus: false
     });
   }
 }

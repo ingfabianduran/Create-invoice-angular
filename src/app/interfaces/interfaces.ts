@@ -1,3 +1,5 @@
+import { SweetAlertIcon } from 'sweetalert2';
+
 export interface HttpError {
   status: number,
   message: string
@@ -31,9 +33,16 @@ export interface ConfigColumnsTable {
 
 export interface Invoice {
   actions: null,
+  id: number,
   date: Date,
   nameInvoiceFrom: string,
   itemsInvoice: number,
   total: number,
   balanceDue: number
+};
+
+export interface Alert {
+  title?: string, 
+  text: string, 
+  icon?: SweetAlertIcon
 };

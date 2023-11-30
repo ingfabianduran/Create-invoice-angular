@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigColumnsTable, Invoice } from '../../interfaces/interfaces';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { ToastrService } from 'ngx-toastr';
+import { SweetAlertService } from 'src/app/services/sweet-alert.service';
 
 @Component({
   selector: 'app-invoices-page-main',
@@ -16,11 +20,29 @@ export class InvoicesPageMainComponent implements OnInit {
     { name: 'Saldo adeudado', key: 'balanceDue' },
   ];
   keysColumnsTable: string[] = ['actions', 'date', 'nameInvoiceFrom', 'itemsInvoice', 'total', 'balanceDue'];
-  dataTable: Invoice[] = [];
+  dataTable!: Observable<Invoice[]>;
 
-  constructor() { }
+  constructor(
+    private store: Store<{ invoices: Invoice[] }>,
+    private toastrService: ToastrService,
+    private sweetAlertService: SweetAlertService
+  ) {
+    this.dataTable = this.store.select('invoices');
+  }
 
   ngOnInit(): void {
-  
+    
+  }
+
+  /**
+    * @author Fabian Duran
+    * @createdate 2023-11-30
+    * Metodo que elimina una factura del sistema.
+    * @param invoice Factura seleccionada
+  */
+  onClickDeleteInvoice(invoice: Invoice): void {
+    this.sweetAlertService.showAlertConfirm({ title: '¿Esta seguro?', text: '¿De eliminar la factura?', icon: 'question' }).then(confirm => {
+      if (confirm.isConfirmed) this.toastrService.success('Factura eliminada correctamente', `Factura ${invoice.id} eliminada`);
+    });
   }
 }
