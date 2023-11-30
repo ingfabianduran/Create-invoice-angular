@@ -17,10 +17,20 @@ export class HeaderInvoinceComponent implements OnInit {
     
   }
 
+  /**
+    * @author Fabian Duran
+    * @createdate 2023-11-29
+    * Metodo que llama a la ventana para la subida de un archivo.
+  */
   onClickToUploadFile(): void {
     this.inputFileImage.nativeElement.click();
   }
-
+  /**
+    * @author Fabian Duran
+    * @createdate 2023-11-29
+    * Metodo que setea el image logo con la imagen cargada.
+    * @param $event Evento emitido por el input
+  */
   onChangeUploadFile($event: Event): void {
     const fileSelect = ($event.target as HTMLInputElement).files?.[0];
     if (fileSelect) {
