@@ -15,8 +15,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { AlertInterceptor } from './interceptors/alert.interceptor';
-import { StoreModule } from '@ngrx/store';
-import { invoicesReducer } from './store/invoices.reducer';
 
 @NgModule({
   declarations: [
@@ -36,8 +34,7 @@ import { invoicesReducer } from './store/invoices.reducer';
     MaterialModule,
     NgxSpinnerModule.forRoot({ type: 'timer' }),
     HttpClientModule,
-    ToastrModule.forRoot(),
-    StoreModule.forRoot({ invoices: invoicesReducer })
+    ToastrModule.forRoot()
   ],
   providers: [
     {

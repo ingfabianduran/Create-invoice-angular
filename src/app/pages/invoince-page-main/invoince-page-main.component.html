@@ -1,4 +1,4 @@
-<section class="p-1 mt-2">
+<section #containerInvoice class="p-1 mt-2">
   <app-header-invoince [formInvoiceHeader]="getFormGroupByFormInvoice('formHeader')"></app-header-invoince>
   <app-articles-invoince [formInvoice]="formInvoice"></app-articles-invoince>
   <app-totals-invoince [formDetailsPayment]="getFormGroupByFormInvoice('formDetailsPayment')" (buttonsForm)="onActionForm($event)"></app-totals-invoince>

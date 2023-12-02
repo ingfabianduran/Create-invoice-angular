@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { Invoice } from '../../interfaces/interfaces';
-import { Store } from '@ngrx/store';
 import { SweetAlertService } from '../../services/sweet-alert.service';
-import { addInvoice } from 'src/app/store/invoices.action';
 import { ToastrService } from 'ngx-toastr';
+import { StoreService } from '../../services/store.service';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-invoince-page-main',
@@ -35,11 +36,12 @@ export class InvoincePageMainComponent implements OnInit {
       balanceDue: new FormControl({ value: '', disabled: true }, [])
     })
   });
+  @ViewChild('containerInvoice') containerInvoice!: ElementRef<HTMLDivElement>;
 
   constructor(
-    private store: Store<{ invoices: Invoice[] }>,
     private sweetAlertService: SweetAlertService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private storeService: StoreService
   ) { }
 
   ngOnInit(): void {
@@ -72,21 +74,58 @@ export class InvoincePageMainComponent implements OnInit {
             const dataForm = this.formInvoice.getRawValue();
             const newInvoice: Invoice = {
               actions: null,
-              id: 2,
+              id: crypto.randomUUID(),
               date: dataForm.formHeader.date,
               nameInvoiceFrom: dataForm.formHeader.nameInvoiceFrom,
               itemsInvoice: dataForm.itemsInvoice.length,
               total: dataForm.formDetailsPayment.total,
               balanceDue: dataForm.formDetailsPayment.balanceDue
             };
-            this.store.dispatch(addInvoice({ invoice: newInvoice }));
+            this.storeService.addInvoice(newInvoice);
             this.toastrService.success('Factura registrada correctamente');
-            this.formInvoice.reset();
+            this.sweetAlertService.showAlertConfirm({ title: '¿Esta seguro?', text: '¿Desea imprimir la factura?', icon: 'question' }).then(confirmPdf => {
+              if (confirmPdf.isConfirmed) {
+                this.printPdfInvoice().then(res => {
+                  this.formInvoice.reset();
+                });
+              } else {
+                this.formInvoice.reset();
+              }
+            });
           }
         });
       } else {
         this.formInvoice.markAllAsTouched();
       }
     }
+  }
+  /**
+    * @author Fabian Duran
+    * @createdate 2023-12-02
+    * Metodo que imprime la factura que se registro.
+  */
+  async printPdfInvoice() {
+    const elementToCapture = this.containerInvoice.nativeElement;
+    const boundingBox = elementToCapture.getBoundingClientRect();
+    const contentHeight = boundingBox.height;
+    elementToCapture.style.height = contentHeight + 'px';
+    await new Promise(resolve => setTimeout(resolve, 100));
+    html2canvas(elementToCapture).then(canvas => {
+      const imgWidth = 208;
+      const pageHeight = 295;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+      let position = 0;
+      heightLeft -= pageHeight;
+      const doc = new jsPDF('p', 'mm', 'a4', true);
+      doc.addImage(canvas, 'PNG', 0, position, imgWidth - 15, imgHeight - 15, '', 'FAST');
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        doc.addPage();
+        doc.addImage(canvas, 'PNG', 0, position, imgWidth, imgHeight, '', 'FAST');
+        heightLeft -= pageHeight;
+      }
+      doc.save('Email.pdf');
+    });
   }
 }

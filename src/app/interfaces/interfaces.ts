@@ -33,7 +33,7 @@ export interface ConfigColumnsTable {
 
 export interface Invoice {
   actions: null,
-  id: number,
+  id: string,
   date: Date,
   nameInvoiceFrom: string,
   itemsInvoice: number,

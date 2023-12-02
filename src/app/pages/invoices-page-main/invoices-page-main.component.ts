@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigColumnsTable, Invoice } from '../../interfaces/interfaces';
-import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { SweetAlertService } from 'src/app/services/sweet-alert.service';
-import { deleteInvoice } from 'src/app/store/invoices.action';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-invoices-page-main',
@@ -21,18 +19,19 @@ export class InvoicesPageMainComponent implements OnInit {
     { name: 'Saldo adeudado', key: 'balanceDue' },
   ];
   keysColumnsTable: string[] = ['actions', 'date', 'nameInvoiceFrom', 'itemsInvoice', 'total', 'balanceDue'];
-  dataTable!: Observable<Invoice[]>;
+  dataTable!: Invoice[];
 
   constructor(
-    private store: Store<{ invoices: Invoice[] }>,
     private toastrService: ToastrService,
-    private sweetAlertService: SweetAlertService
+    private sweetAlertService: SweetAlertService,
+    private storeService: StoreService
   ) {
-    this.dataTable = this.store.select('invoices');
   }
 
   ngOnInit(): void {
-    
+    this.storeService.getInvoices().subscribe(res => {
+      this.dataTable = res;
+    });
   }
 
   /**
@@ -44,7 +43,7 @@ export class InvoicesPageMainComponent implements OnInit {
   onClickDeleteInvoice(invoice: Invoice): void {
     this.sweetAlertService.showAlertConfirm({ title: '¿Esta seguro?', text: '¿De eliminar la factura?', icon: 'question' }).then(confirm => {
       if (confirm.isConfirmed) {
-        this.store.dispatch(deleteInvoice({ id: invoice.id }));
+        this.storeService.deleteInvoice(invoice.id);
         this.toastrService.success('Factura eliminada correctamente', `Factura ${invoice.id} eliminada`);
       }
     });
