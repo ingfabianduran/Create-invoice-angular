@@ -125,7 +125,7 @@ export class InvoincePageMainComponent implements OnInit {
         doc.addImage(canvas, 'PNG', 0, position, imgWidth, imgHeight, '', 'FAST');
         heightLeft -= pageHeight;
       }
-      doc.save('Email.pdf');
+      doc.save('Invoice.pdf');
     });
   }
 }
