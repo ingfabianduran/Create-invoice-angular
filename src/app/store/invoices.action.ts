@@ -1,4 +1,5 @@
-import { createAction } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
+import { Invoice } from '../interfaces/interfaces';
 
-export const addInvoice = createAction('[Invoice Component] Add');
-export const deleteInvoice = createAction('[Invoice Component] Delete');
+export const addInvoice = createAction('addInvoice', props<{ invoice: Invoice }>());
+export const deleteInvoice = createAction('deleteInvoice', props<{ id: number }>());

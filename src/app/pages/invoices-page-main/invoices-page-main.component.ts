@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { SweetAlertService } from 'src/app/services/sweet-alert.service';
+import { deleteInvoice } from 'src/app/store/invoices.action';
 
 @Component({
   selector: 'app-invoices-page-main',
@@ -42,7 +43,10 @@ export class InvoicesPageMainComponent implements OnInit {
   */
   onClickDeleteInvoice(invoice: Invoice): void {
     this.sweetAlertService.showAlertConfirm({ title: '¿Esta seguro?', text: '¿De eliminar la factura?', icon: 'question' }).then(confirm => {
-      if (confirm.isConfirmed) this.toastrService.success('Factura eliminada correctamente', `Factura ${invoice.id} eliminada`);
+      if (confirm.isConfirmed) {
+        this.store.dispatch(deleteInvoice({ id: invoice.id }));
+        this.toastrService.success('Factura eliminada correctamente', `Factura ${invoice.id} eliminada`);
+      }
     });
   }
 }

@@ -8,6 +8,10 @@ export const initialState: Invoice[] = [
 
 export const invoicesReducer = createReducer(
   initialState,
-  on(addInvoice, (state) => state),
-  on(deleteInvoice, (state) => state)
+  on(addInvoice, (state, { invoice }) => {
+    return [...state, invoice];
+  }),
+  on(deleteInvoice, (state, { id }) => {
+    return state.filter(item => item.id !== id);
+  })
 );

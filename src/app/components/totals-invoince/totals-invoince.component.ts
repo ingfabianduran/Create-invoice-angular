@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,6 +15,7 @@ import { InvoicesPageMainComponent } from '../../pages/invoices-page-main/invoic
 })
 export class TotalsInvoinceComponent implements OnInit {
   @Input() formDetailsPayment!: FormGroup;
+  @Output() buttonsForm: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private matDialog: MatDialog) { }
 
@@ -96,5 +97,14 @@ export class TotalsInvoinceComponent implements OnInit {
       width: '70%',
       autoFocus: false
     });
+  }
+  /**
+    * @author Fabian Duran
+    * @createdate 2023-12-01
+    * Metodo que emite el tipo de accion que se realizara para el formulario.
+    * @param action Tipo de accion
+  */
+  onClickButtonForm(action: string): void {
+    this.buttonsForm.emit(action);
   }
 }
