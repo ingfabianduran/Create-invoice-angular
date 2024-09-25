@@ -1,0 +1,87 @@
+{
+  "configVersion": 1,
+  "timestamp": 1727283202210,
+  "index": "https://ingfabianduran.github.io/Create-invoice-angular/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://ingfabianduran.github.io/Create-invoice-angular/489.b88ccfba9f11657c.js",
+        "https://ingfabianduran.github.io/Create-invoice-angular/735.fbc82bdb85e75c81.js",
+        "https://ingfabianduran.github.io/Create-invoice-angular/favicon.ico",
+        "https://ingfabianduran.github.io/Create-invoice-angular/index.html",
+        "https://ingfabianduran.github.io/Create-invoice-angular/main.58d2b5f8637598df.js",
+        "https://ingfabianduran.github.io/Create-invoice-angular/manifest.webmanifest",
+        "https://ingfabianduran.github.io/Create-invoice-angular/polyfills.4eccf3589aaa0ff0.js",
+        "https://ingfabianduran.github.io/Create-invoice-angular/runtime.532475381e167544.js",
+        "https://ingfabianduran.github.io/Create-invoice-angular/scripts.57b3cb7477dfb897.js",
+        "https://ingfabianduran.github.io/Create-invoice-angular/styles.338424a4033e1e3f.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://ingfabianduran.github.io/Create-invoice-angular/assets/icons/icon-128x128.png",
+        "https://ingfabianduran.github.io/Create-invoice-angular/assets/icons/icon-144x144.png",
+        "https://ingfabianduran.github.io/Create-invoice-angular/assets/icons/icon-152x152.png",
+        "https://ingfabianduran.github.io/Create-invoice-angular/assets/icons/icon-192x192.png",
+        "https://ingfabianduran.github.io/Create-invoice-angular/assets/icons/icon-384x384.png",
+        "https://ingfabianduran.github.io/Create-invoice-angular/assets/icons/icon-512x512.png",
+        "https://ingfabianduran.github.io/Create-invoice-angular/assets/icons/icon-72x72.png",
+        "https://ingfabianduran.github.io/Create-invoice-angular/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "https://ingfabianduran.github.io/Create-invoice-angular/489.b88ccfba9f11657c.js": "5ca73937a0b3a8e9b113c03f79c8716815c97915",
+    "https://ingfabianduran.github.io/Create-invoice-angular/735.fbc82bdb85e75c81.js": "c66d0d72b104fb47af138cfc7a2d3b71c91438dd",
+    "https://ingfabianduran.github.io/Create-invoice-angular/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "https://ingfabianduran.github.io/Create-invoice-angular/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "https://ingfabianduran.github.io/Create-invoice-angular/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "https://ingfabianduran.github.io/Create-invoice-angular/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "https://ingfabianduran.github.io/Create-invoice-angular/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "https://ingfabianduran.github.io/Create-invoice-angular/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "https://ingfabianduran.github.io/Create-invoice-angular/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "https://ingfabianduran.github.io/Create-invoice-angular/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "https://ingfabianduran.github.io/Create-invoice-angular/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "https://ingfabianduran.github.io/Create-invoice-angular/index.html": "0aaec82b1d0ba5e4aa967419e8c2b586b7f63fb2",
+    "https://ingfabianduran.github.io/Create-invoice-angular/main.58d2b5f8637598df.js": "3e19a837fdb8bb8d017249e3200d07701f63490d",
+    "https://ingfabianduran.github.io/Create-invoice-angular/manifest.webmanifest": "1f7140a359ab095b603fb0e7deb74a885986aa24",
+    "https://ingfabianduran.github.io/Create-invoice-angular/polyfills.4eccf3589aaa0ff0.js": "c63766c4a0173ce15926bd73b2f348c859eadd2c",
+    "https://ingfabianduran.github.io/Create-invoice-angular/runtime.532475381e167544.js": "9a45209b4839c8b391e457c1e118ceadb2a2c450",
+    "https://ingfabianduran.github.io/Create-invoice-angular/scripts.57b3cb7477dfb897.js": "baf738a722608ae7fbccbdc2ddbdec01fcfa541c",
+    "https://ingfabianduran.github.io/Create-invoice-angular/styles.338424a4033e1e3f.css": "3b12306d4968d6b044793c5483a8da477564abd6"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
